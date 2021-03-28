@@ -100,17 +100,17 @@ function TodoList() {
     }
 
     const updateIsCompleted = (index, val) => {
-        var data = {
-            id: val.id,
-            name: val.name,
-            is_completed: !val.is_completed
-        }
-        axios.patch('/api/v1/todos/${val.id}', data)
-            .then(resp => {
-                const newTodos = [...todos]
-                newTodos[index].is_completed = resp.data.is_completed
-                setTodos(newTodos)
-            })
+      var data = {
+        id: val.id,
+        name : val.name,
+        is_completed: !val.is_completed
+      }
+      axios.patch(`/api/v1/todos/${val.id}`, data)
+      .then(resp => {
+        const newTodos = [...todos]
+        newTodos[index].is_completed = resp.data.is_completed
+        setTodos(newTodos)
+      })
     }
 
     return (
@@ -133,7 +133,7 @@ function TodoList() {
 
         <div>
           {todos.filter((val) => {
-            if(searchName == "") {
+            if(searchName === "") {
               return val
             } else if (val.name.toLowerCase().includes(searchName.toLowerCase())){
             return val
